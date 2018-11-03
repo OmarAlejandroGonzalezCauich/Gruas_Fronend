@@ -1,0 +1,62 @@
+<!--
+  Generated template for the SettingsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+
+    <ion-buttons>
+      <button style="color: #fff; text-align: center;" ion-button (click)="logout()">
+        <ion-icon name="log-out"></ion-icon>
+        Salir
+      </button>
+    </ion-buttons>
+
+    <ion-title style="text-align: center;" color="orange">Ajustes</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <form class="list-form"  #updateForm="ngForm" (ngSubmit)="updateUser(updateForm)">
+      <ion-item>
+        <ion-label stacked>Nombre(s)</ion-label>
+        <ion-input type="text" [(ngModel)]="userData.name" name="name"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked>Apellido(s)</ion-label>
+        <ion-input type="text" [(ngModel)]="userData.display_name" name="display_name"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked>Telefono</ion-label>
+        <ion-input type="text" [(ngModel)]="userData.mobile" name="mobile"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked>RFC</ion-label>
+        <ion-input type="text" [(ngModel)]="userData.vat" name="vat"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked>Correo electrónico</ion-label>
+        <ion-input type="email" [(ngModel)]="userData.email" name="email"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked>Contraseña</ion-label>
+        <ion-input type="password" [(ngModel)]="userData.password" name="password"></ion-input>
+      </ion-item>
+  </form>
+
+  <button ion-button icon-start block color="orange" tappable buttom (click)="updateUser()" style="margin-top: 10%;">
+    <ion-icon name="checkmark-circle"></ion-icon>
+      Actualizar
+  </button>
+
+</ion-content>

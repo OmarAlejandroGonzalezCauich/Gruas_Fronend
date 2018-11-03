@@ -1,0 +1,72 @@
+<ion-header>
+
+  <ion-navbar color="orange">
+
+    <ion-buttons>
+    	<button ion-button (click)="close_modal()">
+    		Cerrar
+    	</button>
+    </ion-buttons>
+
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+	<ion-list>
+	  <form class="list-form"  #registerForm="ngForm" (ngSubmit)="createUser(registerForm)">
+  		<ion-item>
+    		<ion-label stacked>Nombre(s)</ion-label>
+    		<ion-input type="text" [(ngModel)]="userData.name" name="name"></ion-input>
+  		</ion-item>
+
+		  <ion-item>
+    		<ion-label stacked>Apellido(s)</ion-label>
+    		<ion-input type="text" [(ngModel)]="userData.display_name" name="display_name"></ion-input>
+  		</ion-item>
+
+      <ion-item>
+        <ion-label stacked>Telefono</ion-label>
+        <ion-input type="text" [(ngModel)]="userData.mobile" name="mobile"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked>RFC</ion-label>
+        <ion-input type="text" [(ngModel)]="userData.vat" name="vat"></ion-input>
+      </ion-item>
+
+  		<ion-item>
+    		<ion-label stacked>Correo electrónico</ion-label>
+    		<ion-input type="email" [(ngModel)]="userData.email" name="email"></ion-input>
+  		</ion-item>
+
+  		<ion-item>
+    		<ion-label stacked>Contraseña</ion-label>
+    		<ion-input type="password" [(ngModel)]="userData.password" name="password"></ion-input>
+  		</ion-item>
+
+    </form>
+
+	</ion-list>
+
+  <button ion-button color="orange" full tappable (click)="createUser()">Enviar</button>
+
+	<ion-grid>
+		<ion-row>
+			<ion-col col-6>
+				<button ion-button block icon-left>
+					<ion-icon name="logo-facebook"></ion-icon>
+					Facebook
+				</button>
+			</ion-col>
+			<ion-col col-6>
+				<button ion-button block icon-left color="google">
+					<ion-icon name="logo-google"></ion-icon>
+					Google
+				</button>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+
+</ion-content>

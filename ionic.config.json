@@ -1,0 +1,7 @@
+{
+  "name": "gruas",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}

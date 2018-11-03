@@ -1,0 +1,85 @@
+<!--
+  Generated template for the CreateCarPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+  	<ion-buttons>
+
+    	<button style="color: #fff;" ion-button (click)="close_modal()">
+    		Cerrar
+    	</button>
+
+    </ion-buttons>
+
+    <ion-title style="text-align: center;">Registrar Vehículo</ion-title>
+
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <form class="list-form"  #createCarForm="ngForm" (ngSubmit)="createCar(createCarForm)">
+      <ion-grid>
+        <ion-row>
+
+          <ion-item col-12>
+            <ion-label stacked>Seleccione el tipo de vehículo</ion-label>
+              <ion-select [(ngModel)]="carData.tipovehiculo_id" name="tipovehiculo_id">
+                <ion-option *ngFor="let typeVehicle of typeVehicles" value="{{typeVehicle.id}}">{{typeVehicle.name}}</ion-option>
+              </ion-select>
+          </ion-item>
+
+          <ion-item col-12>
+            <ion-label stacked>Seleccione la marca del vehículo</ion-label>
+            <ion-select [(ngModel)]="carData.marca_id" name="marca_id">
+                <ion-option *ngFor="let brand of brands" value="{{brand.id}}">{{brand.name}}</ion-option>
+              </ion-select>
+          </ion-item>
+
+          <ion-item col-12>
+            <ion-label stacked>Seleccione el color del vehículo</ion-label>
+            <ion-select [(ngModel)]="carData.colorvehiculo_id" name="colorvehiculo_id">
+                <ion-option *ngFor="let color of colors" value="{{color.id}}">{{color.name}}</ion-option>
+              </ion-select>
+          </ion-item>
+
+          <ion-item col-6>
+            <ion-label stacked>Nombre</ion-label>
+            <ion-input [(ngModel)]="carData.name" name="name"></ion-input>
+          </ion-item>
+
+          <ion-item col-6>
+            <ion-label stacked>Clase</ion-label>
+            <ion-input [(ngModel)]="carData.clase" name="clase"></ion-input>
+          </ion-item>
+
+          <ion-item col-4>
+            <ion-label stacked>Año</ion-label>
+            <ion-input [(ngModel)]="carData.anio" name="anio"></ion-input>
+          </ion-item>
+
+          <ion-item col-4>
+            <ion-label stacked>Placas</ion-label>
+            <ion-input [(ngModel)]="carData.placas" name="placas"></ion-input>
+          </ion-item>
+
+          <ion-item col-4>
+            <ion-label stacked>No. Serie</ion-label>
+            <ion-input [(ngModel)]="carData.noserie" name="noserie"></ion-input>
+          </ion-item>
+
+        </ion-row>
+      </ion-grid>
+    </form>
+    <button ion-button icon-start block color="orange" tappable (click)="createCar()">
+      <ion-icon name="checkmark-circle"></ion-icon>
+      Registrar
+    </button>
+  </ion-list>
+</ion-content>
