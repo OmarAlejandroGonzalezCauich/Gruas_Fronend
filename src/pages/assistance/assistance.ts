@@ -3,7 +3,9 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
 import { CarProvider } from '../../providers/car/car';
 import { UserProvider } from '../../providers/user/user';
-import { ClientProvider } from '../../providers/client/client';
+import { TypeServiceProvider } from '../../providers/type-service/type-service';
+import { PaymentsProvider } from '../../providers/payments/payments';
+import { AssistanceProvider } from '../../providers/assistance/assistance';
 
 /**
  * Generated class for the AssistancePage page.
@@ -24,7 +26,10 @@ export class AssistancePage {
   public status; 
   //public carData: any;
   public carsData: any;
+  public servicesData: any;
   public clientsData: any;
+  public paymentsData: any;
+  public assistanceData: any;
   public message_success: any; 
   public message_error: any; 
 
@@ -34,18 +39,23 @@ export class AssistancePage {
   	private _toastCtrl: ToastController,
     private _userProvider: UserProvider, 
     private _carProvider: CarProvider,
-    private _clientProvider: ClientProvider
+    private _typeServiceProvider: TypeServiceProvider,
+    private _paymentsProvider: PaymentsProvider,
+    private _assistanceProvider: AssistanceProvider
   ) {
     this.identity = this._userProvider.getIdentity(); 
     this.token = this._userProvider.getToken();
+    this.assistanceData = {"vehiculo_id":"", "tiposervicio_id":"", "tipopago_id":"", "seencuentra":"", "selleva":""};
   }
 
   ionViewDidLoad() {
-    //this.getCars();
-    //this.getClients();
+
+    this.getCars();
+    this.getTypeServices();
+    this.getPaymentTypes();
   }
 
-  /*getCars(){
+  getCars(){
     this._carProvider.getCarsUser(this.token).subscribe(
       response => {
         // Obtener el token 
@@ -63,13 +73,13 @@ export class AssistancePage {
     );
   }
 
-  getClients(){
-    this._clientProvider.getClients().subscribe(
+  getTypeServices(){
+    this._typeServiceProvider.getTypeServices(this.token).subscribe(
       response => {
         // Obtener el token 
         if (response.status != 'error') {
           this.status = 'success';
-          this.clientsData = response.clients;
+          this.servicesData = response.typeServices;
         }else{
           this.status = 'error';
           this.message_error = response.message;
@@ -81,9 +91,47 @@ export class AssistancePage {
     );
   }
 
-  requestAssistance(){
-    this.show_toast('Estamos trabajando...');
-  }*/
+  getPaymentTypes(){
+    this._paymentsProvider.getTypePayments(this.token).subscribe(
+      response => {
+        // Obtener el token 
+        if (response.status != 'error') {
+          this.status = 'success';
+          this.paymentsData = response.paymentTypes;
+        }else{
+          this.status = 'error';
+          this.message_error = response.message;
+        }
+      },
+      error =>{
+        console.log(<any>error);
+      }
+    );
+  }
+
+  createAssistance(assistanceData){
+    this.show_toast('Validando datos...');
+    
+    this._assistanceProvider.createAssistance(this.token, this.assistanceData).subscribe(
+      response => {
+        // Obtener el token 
+        if (response.status != 'error') {
+          this.status = 'success';
+          /*this.assistanceData = {"vehiculo_id":"", "tiposervicio_id":"", "tipopago_id":"", "seencuentra":"", "selleva":""};
+          this.assistanceData.reset();*/
+          this.message_success = 'Se ha levantado la solicitud!';
+          this.show_toast(this.message_success);
+          }else{
+            this.status = 'error';
+            this.message_error = response.message;
+            this.show_toast(this.message_error);
+          }
+      },
+      error =>{
+        console.log(<any>error);
+      }
+    );
+  }
 
   show_toast(message: string){
     let toast = this._toastCtrl.create({

@@ -20,63 +20,45 @@
   	</ion-refresher>
 
 	<ion-list>
-    	<form class="list-form"  #createCarForm="ngForm" (ngSubmit)="createCar(createCarForm)">
+    	<form class="list-form"  #createAssistanceForm="ngForm" (ngSubmit)="createAssistance(createAssistanceForm)">
       		<ion-grid>
         		<ion-row>
+
 		          <ion-item col-12>
 		            <ion-label stacked>Seleccione el vehículo</ion-label>
-		              <ion-select >
-		                <ion-option *ngFor="let carData of carsData" value="{{carData.id}}">{{carData.model}}</ion-option>
+		              <ion-select [(ngModel)]="assistanceData.vehiculo_id" name="vehiculo_id">
+		                <ion-option *ngFor="let carData of carsData" value="{{carData.id}}" value="{{carData.id}}">{{carData.clase}} - {{carData.brand['name']}}</ion-option>
 		              </ion-select>
 		          </ion-item>
+
 		          <ion-item col-12>
-		            <ion-label stacked>Si es cliente, seleccione el nombre</ion-label>
-		            <ion-select >
-		                <ion-option *ngFor="let clientData of clientsData" value="{{clientData.id}}">{{clientData.name}}</ion-option>
+		            <ion-label stacked>Seleccione el tipo de servicio</ion-label>
+		              <ion-select [(ngModel)]="assistanceData.tiposervicio_id" name="tiposervicio_id">
+		                <ion-option *ngFor="let serviceData of servicesData" value="{{serviceData.id}}" value="{{serviceData.id}}">{{serviceData.name}}</ion-option>
 		              </ion-select>
 		          </ion-item>
+
 		          <ion-item col-12>
-		            <ion-label stacked>Tipo de servicio</ion-label>
-		            <ion-select >
-		                <ion-option value="nes">Foraneo</ion-option>
-		                <ion-option value="n64">Local</ion-option>
-		                <ion-option value="ps">Terracería</ion-option>
+		            <ion-label stacked>Seleccione el tipo de pago</ion-label>
+		              <ion-select [(ngModel)]="assistanceData.tipopago_id" name="tipopago_id">
+		                <ion-option *ngFor="let paymentData of paymentsData" value="{{paymentData.id}}"  value="{{paymentData.id}}">{{paymentData.name}}</ion-option>
 		              </ion-select>
 		          </ion-item>
+
 		          <ion-item col-12>
-		            <ion-label stacked>Tipo de pago</ion-label>
-		            <ion-select >
-		                <ion-option value="nes">Efectivo</ion-option>
-		                <ion-option value="n64">Tarjeta de crédito</ion-option>
-		                <ion-option value="ps">Tarjeta de débito</ion-option>
-		            </ion-select>
+		            <ion-label stacked>Favor de realizar una descripción del lugar donde sucedio el cometido</ion-label>
+		              <ion-textarea [(ngModel)]="assistanceData.seencuentra" name="seencuentra"></ion-textarea>
 		          </ion-item>
+
 		          <ion-item col-12>
-					  <ion-label>Solicitante</ion-label>
-					  <ion-checkbox color="orange" checked="false"></ion-checkbox>
+		            <ion-label stacked>¿Cuál sera el destino de su vehículo?</ion-label>
+    				<ion-input type="text" [(ngModel)]="assistanceData.selleva" name="selleva"></ion-input>
 		          </ion-item>
-		          <ion-item col-6>
-		            <ion-label stacked>Seguro</ion-label>
-		            <ion-input></ion-input>
-		          </ion-item>
-		          <ion-item col-6>
-		            <ion-label stacked>Clase</ion-label>
-		            <ion-input ></ion-input>
-		          </ion-item>
-		          <ion-item col-12>
-		            <ion-label stacked>Sucursal</ion-label>
-		            <ion-select >
-		                <ion-option value="nes">Taller</ion-option>
-		            </ion-select>
-		          </ion-item>
-		          <ion-item col-12>
-		            <ion-label stacked>Destino</ion-label>
-		            <ion-input ></ion-input>
-		          </ion-item>
+
         		</ion-row>
       		</ion-grid>
     	</form>
-	    <button ion-button icon-start block color="orange" tappable (click)="requestAssistance()">
+	    <button ion-button icon-start block color="orange" tappable (click)="createAssistance()">
 	      <ion-icon name="build"></ion-icon>
 	      Solicitar Asistencia
 	    </button>

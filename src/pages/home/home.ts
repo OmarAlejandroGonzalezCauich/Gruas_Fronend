@@ -53,11 +53,8 @@ export class HomePage {
           this.show_toast(this.message_success);
           this.token = response;
           localStorage.setItem('token', this.token);
-          //this.userData = new userData({"name":"","surname":"","telephone":"","email":"","password":"","remember_token":"","code_active":"","active":""});
-          //userData.reset();
           // Obtener al usuario identificado
           this._userProvider.signup(this.userData, true).subscribe(
-            
               response => {
                 
                 this.identity = response;

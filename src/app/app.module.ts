@@ -40,6 +40,9 @@ import { ClientProvider } from '../providers/client/client';
 import { TypeVehicleProvider } from '../providers/type-vehicle/type-vehicle';
 import { ColorVehicleProvider } from '../providers/color-vehicle/color-vehicle';
 import { BrandVehicleProvider } from '../providers/brand-vehicle/brand-vehicle';
+import { PaymentsProvider } from '../providers/payments/payments';
+import { TypeServiceProvider } from '../providers/type-service/type-service';
+import { AssistanceProvider } from '../providers/assistance/assistance';
 
 @NgModule({
   declarations: [
@@ -85,6 +88,9 @@ import { BrandVehicleProvider } from '../providers/brand-vehicle/brand-vehicle';
     TypeVehicleProvider,
     ColorVehicleProvider,
     BrandVehicleProvider,
+    PaymentsProvider,
+    TypeServiceProvider,
+    AssistanceProvider,
   ]
 })
 export class AppModule {}
