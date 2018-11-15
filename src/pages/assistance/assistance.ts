@@ -117,8 +117,7 @@ export class AssistancePage {
         // Obtener el token 
         if (response.status != 'error') {
           this.status = 'success';
-          /*this.assistanceData = {"vehiculo_id":"", "tiposervicio_id":"", "tipopago_id":"", "seencuentra":"", "selleva":""};
-          this.assistanceData.reset();*/
+          this.assistanceData = {"vehiculo_id":"", "tiposervicio_id":"", "tipopago_id":"", "seencuentra":"", "selleva":""};
           this.message_success = 'Se ha levantado la solicitud!';
           this.show_toast(this.message_success);
           }else{

@@ -41,6 +41,7 @@ export class RegisterPage {
         // Obtener el token 
         if (response.status != 'error') {
           this.status = 'success';
+          this.userData = {"name":"","display_name":"","mobile":"","email":"","password":"","vat":""};
           this.message_success = 'Se ha creado su cuenta de manera exitosa!';
           this.show_toast(this.message_success);
           }else{
