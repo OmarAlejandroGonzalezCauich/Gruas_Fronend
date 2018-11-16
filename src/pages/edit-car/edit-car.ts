@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AlertController } from 'ionic-angular';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { BrandVehicleProvider } from '../../providers/brand-vehicle/brand-vehicle';
 import { ColorVehicleProvider } from '../../providers/color-vehicle/color-vehicle';
@@ -32,6 +33,7 @@ export class EditCarPage {
   	constructor(
   		public navCtrl: NavController,
   		public navParams: NavParams,
+      public alertCtrl: AlertController,
       private _userProvider: UserProvider,
       private _brandVehicleProvider: BrandVehicleProvider,
       private _colorVehicleProvider: ColorVehicleProvider,
@@ -122,6 +124,28 @@ export class EditCarPage {
           this.message_error = 'Existe un error, intente más tarde';
         }
     );
+  }
+
+  deleteCar(carData){
+    const confirm = this.alertCtrl.create({
+      title: '¿Esta seguro que desea eliminar el vehículo?',
+      message: 'Una vez confirmado no podrá recuperar la información del vehículo.',
+      buttons: [
+        {
+          text: 'No',
+          handler: () => {
+            console.log('Disagree clicked');
+          }
+        },
+        {
+          text: 'Si',
+          handler: () => {
+            console.log('Agree clicked');
+          }
+        }
+      ]
+    });
+    confirm.present();
   }
 
 }

@@ -50,17 +50,17 @@
             <ion-input [(ngModel)]="carData.clase" name="clase"></ion-input>
           </ion-item>
 
-          <ion-item col-4>
+          <ion-item col-6>
             <ion-label stacked>Año</ion-label>
             <ion-input [(ngModel)]="carData.anio" name="anio"></ion-input>
           </ion-item>
 
-          <ion-item col-4>
+          <ion-item col-6>
             <ion-label stacked>Placas</ion-label>
             <ion-input [(ngModel)]="carData.placas" name="placas"></ion-input>
           </ion-item>
 
-          <ion-item col-4>
+          <ion-item col-12>
             <ion-label stacked>No. Serie</ion-label>
             <ion-input [(ngModel)]="carData.noserie" name="noserie"></ion-input>
           </ion-item>
@@ -71,6 +71,10 @@
     <button ion-button icon-start block color="orange" tappable (click)="updateCar()">
       <ion-icon name="checkmark-circle"></ion-icon>
       Actualizar
+    </button>
+    <button ion-button icon-start block color="danger" tappable (click)="deleteCar(carData)">
+      <ion-icon name="checkmark-circle"></ion-icon>
+      Eliminar
     </button>
   </ion-list>
 </ion-content>

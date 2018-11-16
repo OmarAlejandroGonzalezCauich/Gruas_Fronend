@@ -14,54 +14,56 @@
 
 
 <ion-content padding>
-	
-	<ion-refresher (ionRefresh)="doRefresh($event)">
-    	<ion-refresher-content></ion-refresher-content>
-  	</ion-refresher>
+	<ion-card>
+	    <ion-card-header style="text-align: center;">
+	      Solicitar asistencia vial
+	    </ion-card-header>
+	    <ion-refresher (ionRefresh)="doRefresh($event)">
+    		<ion-refresher-content></ion-refresher-content>
+  		</ion-refresher>
 
-	<ion-list>
-    	<form class="list-form"  #createAssistanceForm="ngForm" (ngSubmit)="createAssistance(createAssistanceForm)">
-      		<ion-grid>
-        		<ion-row>
+		<ion-list>
+	    	<form class="list-form"  #createAssistanceForm="ngForm" (ngSubmit)="createAssistance(createAssistanceForm)">
+	      		<ion-grid>
+	        		<ion-row>
+			          <ion-item col-12>
+			            <ion-label stacked>Seleccione el vehículo</ion-label>
+			              <ion-select [(ngModel)]="assistanceData.vehiculo_id" name="vehiculo_id">
+			                <ion-option *ngFor="let carData of carsData" value="{{carData.id}}" value="{{carData.id}}">{{carData.clase}} - {{carData.brand['name']}}</ion-option>
+			              </ion-select>
+			          </ion-item>
 
-		          <ion-item col-12>
-		            <ion-label stacked>Seleccione el vehículo</ion-label>
-		              <ion-select [(ngModel)]="assistanceData.vehiculo_id" name="vehiculo_id">
-		                <ion-option *ngFor="let carData of carsData" value="{{carData.id}}" value="{{carData.id}}">{{carData.clase}} - {{carData.brand['name']}}</ion-option>
-		              </ion-select>
-		          </ion-item>
+			          <ion-item col-12>
+			            <ion-label stacked>Seleccione el tipo de servicio</ion-label>
+			              <ion-select [(ngModel)]="assistanceData.tiposervicio_id" name="tiposervicio_id">
+			                <ion-option *ngFor="let serviceData of servicesData" value="{{serviceData.id}}" value="{{serviceData.id}}">{{serviceData.name}}</ion-option>
+			              </ion-select>
+			          </ion-item>
 
-		          <ion-item col-12>
-		            <ion-label stacked>Seleccione el tipo de servicio</ion-label>
-		              <ion-select [(ngModel)]="assistanceData.tiposervicio_id" name="tiposervicio_id">
-		                <ion-option *ngFor="let serviceData of servicesData" value="{{serviceData.id}}" value="{{serviceData.id}}">{{serviceData.name}}</ion-option>
-		              </ion-select>
-		          </ion-item>
+			          <ion-item col-12>
+			            <ion-label stacked>Seleccione el tipo de pago</ion-label>
+			              <ion-select [(ngModel)]="assistanceData.tipopago_id" name="tipopago_id">
+			                <ion-option *ngFor="let paymentData of paymentsData" value="{{paymentData.id}}"  value="{{paymentData.id}}">{{paymentData.name}}</ion-option>
+			              </ion-select>
+			          </ion-item>
 
-		          <ion-item col-12>
-		            <ion-label stacked>Seleccione el tipo de pago</ion-label>
-		              <ion-select [(ngModel)]="assistanceData.tipopago_id" name="tipopago_id">
-		                <ion-option *ngFor="let paymentData of paymentsData" value="{{paymentData.id}}"  value="{{paymentData.id}}">{{paymentData.name}}</ion-option>
-		              </ion-select>
-		          </ion-item>
+			          <ion-item col-12>
+			            <ion-label stacked>Favor de realizar una descripción del lugar donde sucedio el cometido</ion-label>
+			              <ion-textarea [(ngModel)]="assistanceData.seencuentra" name="seencuentra"></ion-textarea>
+			          </ion-item>
 
-		          <ion-item col-12>
-		            <ion-label stacked>Favor de realizar una descripción del lugar donde sucedio el cometido</ion-label>
-		              <ion-textarea [(ngModel)]="assistanceData.seencuentra" name="seencuentra"></ion-textarea>
-		          </ion-item>
-
-		          <ion-item col-12>
-		            <ion-label stacked>¿Cuál sera el destino de su vehículo?</ion-label>
-    				<ion-input type="text" [(ngModel)]="assistanceData.selleva" name="selleva"></ion-input>
-		          </ion-item>
-
-        		</ion-row>
-      		</ion-grid>
-    	</form>
-	    <button ion-button icon-start block color="orange" tappable (click)="createAssistance()">
-	      <ion-icon name="build"></ion-icon>
-	      Solicitar Asistencia
-	    </button>
-  	</ion-list>
-
+			          <ion-item col-12>
+			            <ion-label stacked>¿Cuál sera el destino de su vehículo?</ion-label>
+	    				<ion-input type="text" [(ngModel)]="assistanceData.selleva" name="selleva"></ion-input>
+			          </ion-item>
+	        		</ion-row>
+	      		</ion-grid>
+	    	</form>
+		    <button ion-button icon-start block color="orange" tappable (click)="createAssistance()">
+		      <ion-icon name="build"></ion-icon>
+		      Solicitar Asistencia
+		    </button>
+		    <br>
+	  	</ion-list>
+	</ion-card>
 </ion-content>

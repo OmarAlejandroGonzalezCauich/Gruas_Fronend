@@ -4,7 +4,6 @@ import { CreateCarPage } from '../create-car/create-car';
 import { CarProvider } from '../../providers/car/car';
 import { UserProvider } from '../../providers/user/user';
 import { EditCarPage } from '../edit-car/edit-car';
-import { DeleteCarPage } from '../delete-car/delete-car';
 /**
  * Generated class for the CarsPage page.
  *
@@ -72,10 +71,6 @@ export class CarsPage {
 
   updateCar( carData: any ){
     this.navCtrl.push( EditCarPage, { 'carData':carData} );
-  }
-
-  deleteCar( carData: any ){
-    this.navCtrl.push( DeleteCarPage, { 'carData':carData} );
   }
 
   doRefresh(refresher: any){
