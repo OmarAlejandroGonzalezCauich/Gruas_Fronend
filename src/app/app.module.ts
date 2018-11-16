@@ -33,6 +33,7 @@ import { VehiclesProvider } from '../providers/vehicles/vehicles';
 import { AssistancePage } from '../pages/assistance/assistance'; 
 import { CarsPage } from '../pages/cars/cars';
 import { CreateCarPage } from '../pages/create-car/create-car';
+import { EditCarPage } from '../pages/edit-car/edit-car';
 import { HistoricPage } from '../pages/historic/historic';
 import { SettingsPage } from '../pages/settings/settings';
 import { CarProvider } from '../providers/car/car';
@@ -53,6 +54,7 @@ import { AssistanceProvider } from '../providers/assistance/assistance';
     AssistancePage,
     CarsPage,
     CreateCarPage,
+    EditCarPage,
     HistoricPage,
     SettingsPage
   ],
@@ -73,6 +75,7 @@ import { AssistanceProvider } from '../providers/assistance/assistance';
     AssistancePage,
     CarsPage,
     CreateCarPage,
+    EditCarPage,
     HistoricPage,
     SettingsPage
   ],

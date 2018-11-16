@@ -14,22 +14,32 @@
 
 
 <ion-content padding>
-  
+
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
   <div class="fixed-content" style="margin-top: 64px;" >
     <div class="scroll-content" style="margin-top: 64px;">
-      <ion-list class="list list-ios">
-        <button class="item item-block item-ios" icon-start="" *ngFor="let carData of carsData">
-          <ion-icon ios="ios-car" md="md-car"></ion-icon>
-          <div class="item-inner">
-            <ion-label>
-              <a style="color: #ff7b00;">{{carData.clase}} - {{carData.brand['name']}} - {{carData.placas}}</a>
-            </ion-label>
-          </div>
-        </button>
+      <ion-list>
+        <ion-item-sliding *ngFor="let carData of carsData">
+          <ion-item>
+            <ion-avatar item-start>
+              <ion-icon ios="ios-car" md="md-car"></ion-icon>
+            </ion-avatar>
+            <h2 style="color: #ff7b00;">{{carData.clase}} - {{carData.brand['name']}} - {{carData.placas}}</h2>
+          </ion-item>
+          <ion-item-options side="right">
+            <button ion-button color="orange" (click)="updateCar( carData )">
+              <ion-icon name="build"></ion-icon>
+              Editar
+            </button>
+            <button ion-button color="danger" (click)="deleteCar( carData )">
+              <ion-icon name="trash"></ion-icon>
+              Borrar
+            </button>
+          </ion-item-options>
+        </ion-item-sliding>
       </ion-list>
     </div>
   </div>

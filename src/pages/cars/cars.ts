@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angu
 import { CreateCarPage } from '../create-car/create-car';
 import { CarProvider } from '../../providers/car/car';
 import { UserProvider } from '../../providers/user/user';
+import { EditCarPage } from '../edit-car/edit-car';
+import { DeleteCarPage } from '../delete-car/delete-car';
 /**
  * Generated class for the CarsPage page.
  *
@@ -32,10 +34,9 @@ export class CarsPage {
     private _carProvider: CarProvider,
     private _userProvider: UserProvider
   ) {
-    this.identity = this._userProvider.getIdentity(); 
-    this.token = this._userProvider.getToken();
-    //this.carData = {"id":"","vehicle_id":"","brand_id":"","user_id":"","model":"","plate":"","color":"","class":"","year":"","no_serie":"","vehicle":"","brand":"","user":""}
-  }
+      this.identity = this._userProvider.getIdentity(); 
+      this.token = this._userProvider.getToken();
+    }
 
   ionViewDidLoad() {
   }
@@ -67,6 +68,14 @@ export class CarsPage {
         console.log(<any>error);
       }
     );
+  }
+
+  updateCar( carData: any ){
+    this.navCtrl.push( EditCarPage, { 'carData':carData} );
+  }
+
+  deleteCar( carData: any ){
+    this.navCtrl.push( DeleteCarPage, { 'carData':carData} );
   }
 
   doRefresh(refresher: any){
