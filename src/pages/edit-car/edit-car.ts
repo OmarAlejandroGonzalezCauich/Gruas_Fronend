@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AlertController } from 'ionic-angular';
+import { ToastController } from 'ionic-angular';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { BrandVehicleProvider } from '../../providers/brand-vehicle/brand-vehicle';
 import { ColorVehicleProvider } from '../../providers/color-vehicle/color-vehicle';
@@ -34,6 +35,7 @@ export class EditCarPage {
   		public navCtrl: NavController,
   		public navParams: NavParams,
       public alertCtrl: AlertController,
+      private _toastCtrl: ToastController,
       private _userProvider: UserProvider,
       private _brandVehicleProvider: BrandVehicleProvider,
       private _colorVehicleProvider: ColorVehicleProvider,
@@ -113,11 +115,11 @@ export class EditCarPage {
           if (response.status == 'success') {
             this.status = response.status; 
             this.message_success = response.message;
-            console.log(this.message_success);
-
+            this.show_toast(this.message_success);
           }else{
             this.status = response.status; 
             this.message_error = response.message;
+            this.show_toast(this.message_error);
           }
         },
         error => {
@@ -134,18 +136,43 @@ export class EditCarPage {
         {
           text: 'No',
           handler: () => {
-            console.log('Disagree clicked');
           }
         },
         {
           text: 'Si',
           handler: () => {
-            console.log('Agree clicked');
+            this._carProvider.delete(this.token, this.carData['id']).subscribe(
+              response => {
+                // Obtener el token 
+                  if (response.status != 'error') {
+                    this.status = response.status; 
+                    this.message_success = response.message;
+                    this.show_toast(this.message_success);
+                    this.navCtrl.pop();
+                  }else{
+                    this.status = response.status; 
+                    this.message_error = response.message;
+                    this.show_toast(this.message_error);
+                    this.status = 'error';
+                  }
+               },
+              error =>{
+                this.message_success = error;
+              }
+            );
           }
         }
       ]
     });
     confirm.present();
+  }
+
+  show_toast(message: string){
+    let toast = this._toastCtrl.create({
+      message: message,
+      duration: 2000,
+      position: 'top'
+    }).present();
   }
 
 }

@@ -46,4 +46,12 @@ export class CarProvider {
 		return this._http.put(this.url+'cars/'+id, params, {headers: headers});
 	}
 
+	delete(token, id): Observable<any>{
+
+		let headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded').set('Authorization', token);
+		// Url del back
+		return this._http.delete(this.url+'cars/'+id, {headers: headers});
+	}
+
+
 }
